@@ -3,19 +3,19 @@ const itemName = document.getElementById('item-name');
 const itemQty = document.getElementById('item-qty');
 const list = document.getElementById('list');
 const alert = document.getElementById('alert');
-
+// to get data after refresh
 document.addEventListener('DOMContentLoaded',function(){
     const items = JSON.parse(window.localStorage.getItem('items'));
     items.forEach(function(item){
         const tr = document.createElement('tr');
-        tr.setAttribute('id',`${item.id}`)
+        tr.setAttribute('id',`${item.id}`)  //to set attribute
         tr.innerHTML = `
             <td>${item.id}</td>
             <td>${item.name}</td>
             <td>${item.qty}</td>
             <td><button class="btn btn-danger" >Delete</button></td>
         `;
-        list.appendChild(tr);
+        list.appendChild(tr);  //for appending to parent 
     })
 })
 
@@ -24,7 +24,7 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     if(itemName.value != '' && itemQty.value != ''){
         const tr = document.createElement('tr');
-        const rand = Math.floor((Math.random() * 1000) + 1);
+        const rand = Math.floor((Math.random() * 1000) + 1); //for creating random id
         tr.setAttribute('id',`${rand}`);
         tr.innerHTML = `
             <td>${rand}</td>
@@ -37,15 +37,18 @@ form.addEventListener('submit', function(event){
         items = window.localStorage.getItem('items') ? JSON.parse(window.localStorage.getItem('items')) : [];
         items.push({id:rand,name:itemName.value,qty:itemQty.value});
         window.localStorage.setItem('items',JSON.stringify(items))
-        itemName.value = '';
+        itemName.value = '';  //to get box empty after clicking submit button
         itemQty.value = '';
+
+        //alert..!!
         alert.classList.add('alert-success');
         alert.innerHTML = 'Item Added successfully !';
+        //for removing alert after 3 seconds
         setTimeout(function(){
             alert.classList.remove('alert-success');
             alert.innerHTML = '';
         },3000)
-    } else {
+    } else { 
         alert.classList.add('alert-warning');
         alert.innerHTML = 'Please Add Items !';
         setTimeout(function(){
@@ -65,6 +68,6 @@ list.addEventListener('click',function(event){
             return item.id != id;
         })
         window.localStorage.setItem('items',JSON.stringify(items));
-        event.target.parentElement.parentElement.remove();
+        event.target.parentElement.parentElement.remove(); //to delete entire row
     }
 })
