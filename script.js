@@ -3,6 +3,18 @@ const itemName = document.getElementById('item-name');
 const itemQty = document.getElementById('item-qty');
 const list = document.getElementById('list');
 const alert = document.getElementById('alert');
+var span = document.getElementById('span');
+
+function myClock() {         
+    setTimeout(function() {   
+      const d = new Date();
+      const n = d.toLocaleTimeString();
+      document.getElementById("clock").innerHTML = n; 
+      myClock();             
+    }, 1000)
+  }
+  myClock();  
+
 // to get data after refresh
 document.addEventListener('DOMContentLoaded',function(){
     const items = JSON.parse(window.localStorage.getItem('items'));
