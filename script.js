@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded',function(){
             <td>${item.name}</td>
             <td>${item.qty}</td>
             <td><button class="btn btn-danger" >Delete</button></td>
+            <td>${datetime}</td>
         `;
         list.appendChild(tr);  //for appending to parent 
     })
@@ -43,6 +44,7 @@ form.addEventListener('submit', function(event){
             <td>${itemName.value}</td>
             <td>${itemQty.value}</td>
             <td><button class="btn btn-danger">Delete</button></td>
+            <td>${datetime}</td>
         `;
         list.appendChild(tr);
         let items;
@@ -69,6 +71,9 @@ form.addEventListener('submit', function(event){
         },3000)
     }
 })
+
+let currentdate = new Date(); 
+let datetime = currentdate.toLocaleString();
 
 // Delete
 
